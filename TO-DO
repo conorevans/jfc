@@ -1,6 +1,6 @@
 Flights[] flights;
-void fromFile(File f) // at the beginning, as there are many flights from the past to catalogue, we will create all flight objects from a structured file
-void fromString(String s) // once the backlog is dealt with, flights will be added individually as they come in
+Flight(File f) // at the beginning, as there are many flights from the past to catalogue, we will create all flight objects from a structured file
+Flight(String s) // once the backlog is dealt with, flights will be added individually as they come in
 
 Each object is a flight, with the following attributes:
 
