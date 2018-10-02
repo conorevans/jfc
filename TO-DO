@@ -4,7 +4,7 @@ void fromString(String s) // once the backlog is dealt with, flights will be add
 
 Each object is a flight, with the following attributes:
 
-String dateOfOffer // The date the e-mail was sent to me.
+Date dateOfOffer // The date the e-mail was sent to me.
 
 Airport departureAirport 
 Airport destinationAirport
