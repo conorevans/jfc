@@ -1,0 +1,32 @@
+Each object is a flight, with the following attributes:
+
+String dateOfOffer // The date the e-mail was sent to me.
+
+Airport departureAirport 
+Airport destinationAirport
+//Each airport will have an ISO tag, layperson tag, Country
+
+String airline 
+
+String durationOfOffer // The e-mail will state the expected duration; there are a couple of typical durations that will cover most.
+
+String travelDates // The e-mail will state the window during which the offers are valid.
+
+int price 
+int typicalPrice 
+
+int saving 
+double savingAsPercent
+
+boolean bagIncluded
+
+The following methods will act on the Flight objects :
+
+String printSingleLine() //prints essential details, on one line. This is to make it more concise when several are printed at once
+String printPretty() // prints in more user-friendly format
+String printFromCountry(String country) // print all from %country%
+String printFromAirport(Airport departureAirport) // prints all departures from %departureAirport%
+
+boolean cheaperThanUsual() // run on a flight, will see if there is any data with flights of identical departureAirport/destinationAirport and return whether it is cheaper than usual, and the proportion.
+
+boolean stillValid() // used to separate previous flights from currently active ones.
