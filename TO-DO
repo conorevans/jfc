@@ -1,3 +1,9 @@
+Coming from a background of mainly working in Java, my initial thought was to use Java for this project. I have a lot of Object-Oriented Programming experience, I know how to read and write files, and generally just knew the language I was using.
+However, I decided to change my focus and do the project in JavaScript. JS is more dynamic, and is so easily integrated into web-pages - my end goal being a web page with all the flights. It also represented a challenge for me, as I had never formally used JavaScript, nor any
+of the IDEs, nor had I experience localhost web server pages. For all that and more, I changed the focus. The part below the dashed lines represents my initial drawing board for Java, which I will keep as the information is useful and I need not write it out again.
+
+-------------
+
 Flights[] flights;
 Flight(File f) // at the beginning, as there are many flights from the past to catalogue, we will create all flight objects from a structured file
 Flight(String s) // once the backlog is dealt with, flights will be added individually as they come in
