@@ -1,6 +1,6 @@
-//-----------------READ FILE FROM SERVER
 
 
+//creation of basic table in HTML, eventually want to represent the data from the CSV file as a(n interactive) table on the webpage.
 function insertRow(){
     var tbl = document.getElementById("MyTable");
     var row = tbl.insertRow();
@@ -9,7 +9,7 @@ function insertRow(){
     cell1.innerHTML = "abc";
     cell2.innerHTML = "def";
 }
-
+//-----------------READ FILE FROM SERVER
 var fileReadIn = [""]
 function readTextFile(file)
 {
