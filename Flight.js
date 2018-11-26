@@ -1,16 +1,7 @@
 
 
-//creation of basic table in HTML, eventually want to represent the data from the CSV file as a(n interactive) table on the webpage.
-function insertRow(){
-    var tbl = document.getElementById("MyTable");
-    var row = tbl.insertRow();
-    var cell1 = row.insertCell();
-    var cell2 = row.insertCell();
-    cell1.innerHTML = "abc";
-    cell2.innerHTML = "def";
-}
 //-----------------READ FILE FROM SERVER
-var fileReadIn = [""]
+var fileReadIn = [""];
 function readTextFile(file)
 {
     var rawFile = new XMLHttpRequest();
@@ -22,8 +13,7 @@ function readTextFile(file)
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText;
-                fileReadIn[0] = allText;
-              
+                fileReadIn[0] = allText;              
             }
         }
     }
@@ -31,10 +21,11 @@ function readTextFile(file)
 
 }
  
-readTextFile("http://127.0.0.1:8887/jfcmin.csv")
+//localhost
+readTextFile("http://127.0.0.1:8887/jfc.csv")
 
 
-var file = new File(fileReadIn,'jfcmin.csv' ,{
+var file = new File(fileReadIn,'jfc.csv' ,{
   type: "text/csv"
 })
 
@@ -46,15 +37,27 @@ Papa.parse(file, {
     quoteChar: '"',
     header: false,
     dynamicTyping: false,
-    preview: 0,
+    //to be worked on 
+    preview: 13,
     encoding: "",
     worker: false,
     comments: false,
     step: undefined,
-    complete: function(results,file){
-      console.log("results", results)
-      console.log("file:", file)
-     
+    complete: function(results){
+        var tbl = document.getElementById("MyTable");
+        var a = results.data;
+        console.log(a);
+        //we want to slice the first row of the data, as it represents an array of the text field atop each column of data
+        //necessary in the file for comprehension, but not for posting to our table.
+        //the option 'header' set to true can provide this capability according to the PapaParse docs. However, the programme
+        //reacted poorly, and this is a very simple fix.
+        a.slice(1).forEach(element => {
+            var row = tbl.insertRow();
+            element.forEach(element1 => {
+                var cell = row.insertCell();
+                cell.innerHTML = element1; 
+            });     
+        });
     },
     error: undefined,
     download: false,
