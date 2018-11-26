@@ -1,42 +1,8 @@
-Coming from a background of mainly working in Java, my initial thought was to use Java for this project. I have a lot of Object-Oriented Programming experience, I know how to read and write files, and generally just knew the language I was using.
-However, I decided to change my focus and do the project in JavaScript. JS is more dynamic, and is so easily integrated into web-pages - my end goal being a web page with all the flights. It also represented a challenge for me, as I had never formally used JavaScript, nor any
-of the IDEs, nor had I experience localhost web server pages. For all that and more, I changed the focus. The part below the dashed lines represents my initial drawing board for Java, which I will keep as the information is useful and I need not write it out again.
+1: 'preview' field in config options is currently hardcoded. Left at 0, it reads all lines. Specified at any higher number X, it reads X lines.
+Several attempts have come up short: skipEmptyLines set to 'true' should ignore empty lines, set to 'greedy' should ignore lines of "". However,
+neither produce results and either break the table or crash the page. Thus, I am trying to softcode the hardcoding (i.e. make it adaptive to each list,
+and not just a single int). Attempted to create a numLines variable by splitting the entire text found in the readTextFile() function, which gives us
+an array, each index being a line of the document. Thus, numLines.length (-1 to avoid the column headings) should give us the number of lines to read through.
+However, preview doesn't seem to like being attributed the value of a variable, and the programme just loads indefinitely.
 
--------------
-
-Flights[] flights;
-Flight(File f) // at the beginning, as there are many flights from the past to catalogue, we will create all flight objects from a structured file
-Flight(String s) // once the backlog is dealt with, flights will be added individually as they come in
-
-Each object is a flight, with the following attributes:
-
-Date dateOfOffer // The date the e-mail was sent to me.
-
-Airport departureAirport 
-Airport destinationAirport
-//Each airport will have an ISO tag, layperson tag, Country
-
-String airline 
-
-String durationOfOffer // The e-mail will state the expected duration; there are a couple of typical durations that will cover most.
-
-String travelDates // The e-mail will state the window during which the offers are valid.
-
-int price 
-int typicalPrice 
-
-int saving 
-double savingAsPercent
-
-boolean bagIncluded
-
-The following methods will act on the Flight objects :
-
-String printSingleLine() //prints essential details, on one line. This is to make it more concise when several are printed at once
-String printPretty() // prints in more user-friendly format
-String printFromCountry(String country) // print all from %country%
-String printFromAirport(Airport departureAirport) // prints all departures from %departureAirport%
-
-boolean cheaperThanUsual() // run on a flight, will see if there is any data with flights of identical departureAirport/destinationAirport and return whether it is cheaper than usual, and the proportion.
-
-boolean stillValid() // used to separate previous flights from currently active ones.
+2: making the table and HTML prettier, adding functionalities such as searching by country, airport, etc.
