@@ -2,27 +2,21 @@
 
 
 var fileReadIn = [""];
-function readTextFile(file)
-{
+function readTextFile(file){
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
+    rawFile.onreadystatechange = function (){
+        if(rawFile.readyState === 4){
+            if(rawFile.status === 200 || rawFile.status == 0){
                 var allText = rawFile.responseText;
                 fileReadIn[0] = allText;              
             }
         }
     }
     rawFile.send(null);
-
 }
  
 readTextFile("http://127.0.0.1:8887/jfc.csv")
-
 
 var file = new File(fileReadIn,'jfc.csv' ,{
   type: "text/csv"
@@ -80,7 +74,6 @@ function resetRowColours(){
 }
 
 Papa.parse(file, {
-  
     delimiter: ",",  // auto-detect <--------- We don't want this!
     newline: "\n",    // auto-detect
     quoteChar: '"',
@@ -94,11 +87,9 @@ Papa.parse(file, {
     step: undefined,
     complete: function(results){
         var tbl = document.getElementById("MyTable");
-        var a = results.data;
-        console.log(a);
         //we want to slice the first row of the data, as it represents an array of the text field atop each column of data
         //necessary in the file for comprehension, but not for posting to our table.
-        a.splice(1).forEach(element => {
+        results.data.splice(1).forEach(element => {
             var row = tbl.insertRow();
             element.forEach(element1 => {
                 var cell = row.insertCell();
