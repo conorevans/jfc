@@ -28,16 +28,45 @@ var file = new File(fileReadIn,'jfc.csv' ,{
   type: "text/csv"
 })
 
-function setRowColour(){
+function setRowColours(){
     var table=document.getElementById("MyTable");
     var r=0;
+    //we want to allow people to put in 'Gatwick' or 'Heathrow' and have it parsed as if this was correct input
+    londonAirports();
     while(row=table.rows[r]){
-        if(row.cells[2].innerHTML == document.getElementById("airportForm").elements[0].value){
-            table.rows[r].style.backgroundColor = "#6C33FF";
+        if(document.getElementById("depAir").checked){
+            if(row.cells[1].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
+            || row.cells[2].innerHTML == document.getElementById("inputText").value.toUpperCase()){
+                table.rows[r].style.backgroundColor = "#6C33FF";
+            }
+        }
+        else if(document.getElementById("depCountry").checked){
+            if(row.cells[3].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                table.rows[r].style.backgroundColor = "#6C33FF";
+            }
+        }
+        else if(document.getElementById("destAir").checked){
+            if(row.cells[4].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
+            || row.cells[5].innerHTML == document.getElementById("inputText").value.toUpperCase()){
+                table.rows[r].style.backgroundColor = "#6C33FF";
+            }
+        }
+        else if(document.getElementById("destCountry").checked){
+            if(row.cells[6].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                table.rows[r].style.backgroundColor = "#6C33FF";
+            }
         }
         r++;
     }
+}
 
+function londonAirports(){
+    if(document.getElementById("inputText").value.toUpperCase() == "GATWICK"){
+        document.getElementById("inputText").value = "London Gatwick";
+    }
+    else if(document.getElementById("inputText").value.toUpperCase() == "HEATHROW"){
+        document.getElementById("inputText").value = "London Heathrow";
+    }
 }
 
 function resetRowColours(){
