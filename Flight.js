@@ -1,6 +1,6 @@
-
-
 //-----------------READ FILE FROM SERVER
+
+
 var fileReadIn = [""];
 function readTextFile(file)
 {
@@ -21,7 +21,6 @@ function readTextFile(file)
 
 }
  
-//localhost
 readTextFile("http://127.0.0.1:8887/jfc.csv")
 
 
@@ -29,6 +28,27 @@ var file = new File(fileReadIn,'jfc.csv' ,{
   type: "text/csv"
 })
 
+function setRowColour(){
+    var table=document.getElementById("MyTable");
+    var r=0;
+    while(row=table.rows[r]){
+        if(row.cells[2].innerHTML == document.getElementById("airportForm").elements[0].value){
+            table.rows[r].style.backgroundColor = "#6C33FF";
+        }
+        r++;
+    }
+
+}
+
+function resetRowColours(){
+    var table=document.getElementById("MyTable");
+    //set r to 1, as we don't want to reset the colour of the "Headings" row.
+    var r=1;
+    while(row=table.rows[r]){
+        table.rows[r].style.backgroundColor = "#FFFFFF";
+        r++;
+    }
+}
 
 Papa.parse(file, {
   
@@ -37,7 +57,7 @@ Papa.parse(file, {
     quoteChar: '"',
     header: false,
     dynamicTyping: false,
-    //to be worked on 
+    //to be worked on
     preview: 13,
     encoding: "",
     worker: false,
@@ -49,9 +69,7 @@ Papa.parse(file, {
         console.log(a);
         //we want to slice the first row of the data, as it represents an array of the text field atop each column of data
         //necessary in the file for comprehension, but not for posting to our table.
-        //the option 'header' set to true can provide this capability according to the PapaParse docs. However, the programme
-        //reacted poorly, and this is a very simple fix.
-        a.slice(1).forEach(element => {
+        a.splice(1).forEach(element => {
             var row = tbl.insertRow();
             element.forEach(element1 => {
                 var cell = row.insertCell();
