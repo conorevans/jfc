@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jack's Flight Club</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/homepageStyles.css" type="text/css">
+        <!--style(s)-->
+    </head>
+    <body>
+        <script src="papaparse.js"></script>
+        <script src="Flight.js"></script>
+        <!--scripts-->
+
+        <form id="airportForm" action="javascript:;" autocomplete="off">
+            <div>
+                <input type="radio" name="input" id="depAir" required>
+                <label for="depAir">Departure Airport</label>
+            </div>
+            <div>
+                <input type="radio" name="input" id="depCountry">
+                <label for="depCountry">Departure Country</label>
+            </div>
+            <div>
+                <input type="radio" name="input" id="destAir">
+                <label for="destAir">Destination Airport</label>
+            </div>
+            <div>
+                <input type="radio" name="input" id="destCountry">
+                <label for="destCountry">Destination Country</label>
+            </div>
+            <br><input type="text" id="inputText" onfocus="this.value=''" required>
+            <button type="submit" name="action" onclick="updateTable()">Submit</button>
+        </form>
+        <!--form-->
+            
+        <table id="MyTable">
+            <h1>JFC</h1>
+            <tr>
+                <th>Date</th>
+                <th>Departure Airport</th>
+                <th>IATA*</th>
+                <th>Country</th>
+                <th>Destination Airport</th>
+                <th>IATA</th>
+                <th>Country</th>
+                <th>Airline</th>
+                <th>Travel Dates</th>
+                <th>Offer Duration</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Typical Price</th>
+                <th>Saving</th>
+                <th>Saving%</th>
+                <th>Bag Included</th>
+            </tr>
+        </table>
+        <p1 id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</p1>
+    </body>
+</html>
