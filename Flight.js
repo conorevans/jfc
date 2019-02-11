@@ -16,63 +16,13 @@ function readTextFile(file){
     rawFile.send(null);
 }
  
-readTextFile("http://127.0.0.1:8887/jfc.csv")
+readTextFile("http://127.0.0.1:8887/JFC/jfc.csv")
 
 var file = new File(fileReadIn,'jfc.csv' ,{
   type: "text/csv"
 })
 
-function setRowColours(){
-    var table=document.getElementById("MyTable");
-    var r=0;
-    //we want to allow people to put in 'Gatwick' or 'Heathrow' and have it parsed as if this was correct input
-    londonAirports();
-    while(row=table.rows[r]){
-        if(document.getElementById("depAir").checked){
-            if(row.cells[1].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
-            || row.cells[2].innerHTML == document.getElementById("inputText").value.toUpperCase()){
-                table.rows[r].style.backgroundColor = "#6C33FF";
-            }
-        }
-        else if(document.getElementById("depCountry").checked){
-            if(row.cells[3].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                table.rows[r].style.backgroundColor = "#6C33FF";
-            }
-        }
-        else if(document.getElementById("destAir").checked){
-            if(row.cells[4].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
-            || row.cells[5].innerHTML == document.getElementById("inputText").value.toUpperCase()){
-                table.rows[r].style.backgroundColor = "#6C33FF";
-            }
-        }
-        else if(document.getElementById("destCountry").checked){
-            if(row.cells[6].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                table.rows[r].style.backgroundColor = "#6C33FF";
-            }
-        }
-        r++;
-    }
-}
-
-function londonAirports(){
-    if(document.getElementById("inputText").value.toUpperCase() == "GATWICK"){
-        document.getElementById("inputText").value = "London Gatwick";
-    }
-    else if(document.getElementById("inputText").value.toUpperCase() == "HEATHROW"){
-        document.getElementById("inputText").value = "London Heathrow";
-    }
-}
-
-function resetRowColours(){
-    var table=document.getElementById("MyTable");
-    //set r to 1, as we don't want to reset the colour of the "Headings" row.
-    var r=1;
-    while(row=table.rows[r]){
-        table.rows[r].style.backgroundColor = "#FFFFFF";
-        r++;
-    }
-}
-
+//parse csv file and use returned json array to build our initial table
 Papa.parse(file, {
     delimiter: ",",  // auto-detect <--------- We don't want this!
     newline: "\n",    // auto-detect
@@ -106,3 +56,102 @@ Papa.parse(file, {
     withCredentials: undefined
 
 });
+
+
+function updateTable(){
+    //we want to be able to parse inputs such as 'gatwick' or 'stansted' correctly
+    londonAirports();
+    var table = document.getElementById("MyTable");
+    //create new table which we will fill with relevant data
+    var difftable = document.createElement('table');
+    var r = 0;
+    //copy header row firsts
+    while(r < 1){
+        var newRow = difftable.insertRow();
+        var i=0, cell;
+        while(cell = table.rows[0].cells[i]){
+            var newCell = newRow.insertCell();
+            newCell.innerHTML = table.rows[0].cells[i].innerHTML;
+            style(newCell);
+            i++;
+        }
+        r++;
+    }
+    //copy relevant rows
+    while(row=table.rows[r]){
+        if(document.getElementById("depAir").checked){
+            if(row.cells[1].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase() ||
+            row.cells[2].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                var newRow = difftable.insertRow();
+                var i = 0, cell;
+                while(cell = row.cells[i]){
+                    var newCell = newRow.insertCell();
+                    newCell.innerHTML = row.cells[i].innerHTML;
+                    i++;
+                }
+            }
+        }
+        else if(document.getElementById("depCountry").checked){
+            if(row.cells[3].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                var newRow = difftable.insertRow();
+                var i = 0, cell;
+                while(cell = row.cells[i]){
+                    var newCell = newRow.insertCell();
+                    newCell.innerHTML = row.cells[i].innerHTML;
+                    i++;
+                }
+            }
+        }
+        else if(document.getElementById("destAir").checked){
+            if(row.cells[4].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
+            || row.cells[5].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                var newRow = difftable.insertRow();
+                var i = 0, cell;
+                while(cell = row.cells[i]){
+                    var newCell = newRow.insertCell();
+                    newCell.innerHTML = row.cells[i].innerHTML;
+                    i++;
+                }
+            }
+        }
+        else if(document.getElementById("destCountry").checked){
+            if(row.cells[6].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
+                var newRow = difftable.insertRow();
+                var i = 0, cell;
+                while(cell = row.cells[i]){
+                    var newCell = newRow.insertCell();
+                    newCell.innerHTML = row.cells[i].innerHTML;
+                    i++;
+                }
+            }
+        }
+        r++;
+    }
+    //remove old table and suffix (for positioning)
+    var suffix = document.getElementById("iata");
+    document.getElementById("iata").remove();
+    document.getElementById("MyTable").remove();
+
+    //introduce new table and suffix
+    document.body.appendChild(difftable);
+    //set table id so that multiple criteria can be searched successively
+    //i.e. first trim table by looking at all UK flights, then LGW.
+    difftable.id = "MyTable";
+    document.body.appendChild(suffix);
+}
+
+function style(cell){
+    cell.style.backgroundColor = "#6633FF";
+    cell.style.fontWeight = "bold";
+}
+
+//some common airports are known by their shorthand name, especially when their are multiple in a city.
+//plans to expand to other major cities once dataset is complete.
+function londonAirports(){
+    if(document.getElementById("inputText").value.toUpperCase() == "GATWICK"){
+        document.getElementById("inputText").value = "London Gatwick";
+    }
+    else if(document.getElementById("inputText").value.toUpperCase() == "HEATHROW"){
+        document.getElementById("inputText").value = "London Heathrow";
+    }
+}
