@@ -1,8 +1,0 @@
-1: 'preview' field in config options is currently hardcoded. Left at 0, it reads all lines. Specified at any higher number X, it reads X lines.
-Several attempts have come up short: skipEmptyLines set to 'true' should ignore empty lines, set to 'greedy' should ignore lines of "". However,
-neither produce results and either break the table or crash the page. Thus, I am trying to softcode the hardcoding (i.e. make it adaptive to each list,
-and not just a single int). Attempted to create a numLines variable by splitting the entire text found in the readTextFile() function, which gives us
-an array, each index being a line of the document. Thus, numLines.length (-1 to avoid the column headings) should give us the number of lines to read through.
-However, preview doesn't seem to like being attributed the value of a variable, and the programme just loads indefinitely.
-
-2: making the table and HTML prettier, adding functionalities such as searching by country, airport, etc.
