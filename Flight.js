@@ -61,88 +61,34 @@ Papa.parse(file, {
 function updateTable(){
     //we want to be able to parse inputs such as 'gatwick' or 'stansted' correctly
     londonAirports();
+    
     var table = document.getElementById("MyTable");
-    //create new table which we will fill with relevant data
-    var difftable = document.createElement('table');
-    var r = 0;
-    //copy header row firsts
-    while(r < 1){
-        var newRow = difftable.insertRow();
-        var i=0, cell;
-        while(cell = table.rows[0].cells[i]){
-            var newCell = newRow.insertCell();
-            newCell.innerHTML = table.rows[0].cells[i].innerHTML;
-            style(newCell);
-            i++;
-        }
-        r++;
-    }
-    //copy relevant rows
+    var r = 1;
+
+    //remove irrelevant rows
     while(row=table.rows[r]){
-        if(document.getElementById("depAir").checked){
-            if(row.cells[1].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase() ||
-            row.cells[2].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                var newRow = difftable.insertRow();
-                var i = 0, cell;
-                while(cell = row.cells[i]){
-                    var newCell = newRow.insertCell();
-                    newCell.innerHTML = row.cells[i].innerHTML;
-                    i++;
-                }
-            }
+        if(
+            (document.getElementById("depAir").checked
+            && row.cells[1].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase()
+            && row.cells[2].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase())
+             
+            || (document.getElementById("depCountry").checked
+            && row.cells[3].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase()) 
+            
+            || (document.getElementById("destAir").checked
+            && row.cells[4].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase()
+            && row.cells[5].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase())
+
+            || (document.getElementById("destCountry").checked
+            && row.cells[6].innerHTML.toUpperCase() != document.getElementById("inputText").value.toUpperCase()) 
+            ){
+            table.deleteRow(r);   
         }
-        else if(document.getElementById("depCountry").checked){
-            if(row.cells[3].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                var newRow = difftable.insertRow();
-                var i = 0, cell;
-                while(cell = row.cells[i]){
-                    var newCell = newRow.insertCell();
-                    newCell.innerHTML = row.cells[i].innerHTML;
-                    i++;
-                }
-            }
+        //if valid row, move on to next row
+        else {
+            r++;
         }
-        else if(document.getElementById("destAir").checked){
-            if(row.cells[4].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()
-            || row.cells[5].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                var newRow = difftable.insertRow();
-                var i = 0, cell;
-                while(cell = row.cells[i]){
-                    var newCell = newRow.insertCell();
-                    newCell.innerHTML = row.cells[i].innerHTML;
-                    i++;
-                }
-            }
-        }
-        else if(document.getElementById("destCountry").checked){
-            if(row.cells[6].innerHTML.toUpperCase() == document.getElementById("inputText").value.toUpperCase()){
-                var newRow = difftable.insertRow();
-                var i = 0, cell;
-                while(cell = row.cells[i]){
-                    var newCell = newRow.insertCell();
-                    newCell.innerHTML = row.cells[i].innerHTML;
-                    i++;
-                }
-            }
-        }
-        r++;
     }
-    //remove old table and suffix (for positioning)
-    var suffix = document.getElementById("iata");
-    document.getElementById("iata").remove();
-    document.getElementById("MyTable").remove();
-
-    //introduce new table and suffix
-    document.body.appendChild(difftable);
-    //set table id so that multiple criteria can be searched successively
-    //i.e. first trim table by looking at all UK flights, then LGW.
-    difftable.id = "MyTable";
-    document.body.appendChild(suffix);
-}
-
-function style(cell){
-    cell.style.backgroundColor = "#6633FF";
-    cell.style.fontWeight = "bold";
 }
 
 //some common airports are known by their shorthand name, especially when their are multiple in a city.
