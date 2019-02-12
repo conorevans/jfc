@@ -101,3 +101,9 @@ function londonAirports(){
         document.getElementById("inputText").value = "London Heathrow";
     }
 }
+
+function searchCriteria() {
+    var criteria = document.getElementById("searchCriteria");
+    document.getElementById("c1Text").innerHTML = document.getElementById("inputText").value;
+    criteria.classList.remove("initiallyHidden");
+}
