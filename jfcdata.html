@@ -13,23 +13,23 @@
 
         <form id="airportForm" action="javascript:;" autocomplete="off">
             <div>
-                <input type="radio" name="input" id="depAir" required>
+                <input type="radio" id="depAir" required>
                 <label for="depAir">Departure Airport</label>
             </div>
             <div>
-                <input type="radio" name="input" id="depCountry">
+                <input type="radio" id="depCountry">
                 <label for="depCountry">Departure Country</label>
             </div>
             <div>
-                <input type="radio" name="input" id="destAir">
+                <input type="radio" id="destAir">
                 <label for="destAir">Destination Airport</label>
             </div>
             <div>
-                <input type="radio" name="input" id="destCountry">
+                <input type="radio" id="destCountry">
                 <label for="destCountry">Destination Country</label>
             </div>
             <br><input type="text" id="inputText" onfocus="this.value=''" required>
-            <button type="submit" id="submitBtn" onclick="updateTable();searchCriteria();">Submit</button>
+            <button type="submit"onclick="updateTable();searchCriteria();">Submit</button>
         </form>
         <!--form-->
         <section id="searchCriteria" class="initiallyHidden">
@@ -41,7 +41,6 @@
                     </div>
                 </div>
             </button>
-        </section>
         </section>
         <h1>JFC</h1> 
         <table id="MyTable"> 
