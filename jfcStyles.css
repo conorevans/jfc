@@ -1,0 +1,42 @@
+#mainTable {
+    position: relative;
+    left: 5%;
+}
+#mainTable h1 {
+    font-size: larger;
+    font-weight: bold;
+    position: relative;
+    left: 40%;
+}
+
+#flightTable {
+    border-collapse: collapse;
+}
+td , th {
+    border: 1px solid black;
+}
+
+th {
+    background-color: rgb(108,55,255); /*backup*/
+    background-color: rgb(108,55,255,80%);/*opacity*/
+}
+
+form {
+    padding-bottom: 25px;
+}
+
+.initiallyHidden {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.xButton {
+    font-weight: bold;
+}
+
+.floatLeft {
+    float: left;
+}
