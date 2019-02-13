@@ -3,7 +3,7 @@
     <head>
         <title>Jack's Flight Club</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="styles/homepageStyles.css" type="text/css">
+        <link rel="stylesheet" href="styles/jfcstyles.css" type="text/css">
         <!--style(s)-->
     </head>
     <body>
@@ -13,19 +13,19 @@
 
         <form id="airportForm" action="javascript:;" autocomplete="off">
             <div>
-                <input type="radio" id="depAir" required>
+                <input type="radio" name="form" id="depAir" required>
                 <label for="depAir">Departure Airport</label>
             </div>
             <div>
-                <input type="radio" id="depCountry">
+                <input type="radio" name="form" id="depCountry">
                 <label for="depCountry">Departure Country</label>
             </div>
             <div>
-                <input type="radio" id="destAir">
+                <input type="radio" name="form" id="destAir">
                 <label for="destAir">Destination Airport</label>
             </div>
             <div>
-                <input type="radio" id="destCountry">
+                <input type="radio" name="form" id="destCountry">
                 <label for="destCountry">Destination Country</label>
             </div>
             <br><input type="text" id="inputText" onfocus="this.value=''" required>
@@ -33,36 +33,38 @@
         </form>
         <!--form-->
         <section id="searchCriteria" class="initiallyHidden">
-            <button type="menu">
-                <div>
-                    <div id="criterion1">
-                        <div id="c1Text" class="inline"></div>
-                        <div id="xButton" class="inline">&times;</div>
-                    </div>
-                </div>
+            <button type="menu" id="criterion1" class="initiallyHidden">
+                <div id="c1Text" class="inline"></div>
+                <div class= "xButton inline">&times;</div>
+            </button>
+            <button type="menu" id="criterion2" class="initiallyHidden">
+                <div id="c2Text" class="inline"></div>
+                <div class="xButton inline">&times;</div>
             </button>
         </section>
-        <h1>JFC</h1> 
-        <table id="MyTable"> 
-            <tr>
-                <th>Date</th>
-                <th>Departure Airport</th>
-                <th>IATA*</th>
-                <th>Country</th>
-                <th>Destination Airport</th>
-                <th>IATA</th>
-                <th>Country</th>
-                <th>Airline</th>
-                <th>Travel Dates</th>
-                <th>Offer Duration</th>
-                <th>Price</th>
-                <th>Currency</th>
-                <th>Typical Price</th>
-                <th>Saving</th>
-                <th>Saving%</th>
-                <th>Bag Included</th>
-            </tr>
-        </table>
-        <div id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</div>
+        <section id="mainTable">
+            <h1>JFC</h1> 
+            <table id="flightTable"> 
+                <tr>
+                    <th>Date</th>
+                    <th>Departure Airport</th>
+                    <th>IATA*</th>
+                    <th>Country</th>
+                    <th>Destination Airport</th>
+                    <th>IATA</th>
+                    <th>Country</th>
+                    <th>Airline</th>
+                    <th>Travel Dates</th>
+                    <th>Offer Duration</th>
+                    <th>Price</th>
+                    <th>Currency</th>
+                    <th>Typical Price</th>
+                    <th>Saving</th>
+                    <th>Saving%</th>
+                    <th>Bag Included</th>
+                </tr>
+            </table>
+            <div id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</div>
+        </section>
     </body>
 </html>
