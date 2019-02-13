@@ -36,7 +36,7 @@ Papa.parse(file, {
     comments: false,
     step: undefined,
     complete: function(results){
-        var tbl = document.getElementById("MyTable");
+        var tbl = document.getElementById("flightTable");
         //we want to slice the first row of the data, as it represents an array of the text field atop each column of data
         //necessary in the file for comprehension, but not for posting to our table.
         results.data.splice(1).forEach(element => {
@@ -62,7 +62,7 @@ function updateTable(){
     //we want to be able to parse inputs such as 'gatwick' or 'stansted' correctly
     londonAirports();
     
-    var table = document.getElementById("MyTable");
+    var table = document.getElementById("flightTable");
     var r = 1;
 
     //remove irrelevant rows
@@ -103,7 +103,20 @@ function londonAirports(){
 }
 
 function searchCriteria() {
-    var criteria = document.getElementById("searchCriteria");
-    document.getElementById("c1Text").innerHTML = document.getElementById("inputText").value;
-    criteria.classList.remove("initiallyHidden");
+    document.getElementById("searchCriteria").classList.remove("initiallyHidden");
+    if(document.getElementById("depAir").checked){
+        if(document.getElementById("criterion1").classList.contains("initiallyHidden") 
+        && !(document.getElementById("criterion2").classList.contains("initiallyHidden"))){
+            document.getElementById("criterion2").classList.remove("floatLeft");
+        }
+        document.getElementById("c1Text").innerHTML = document.getElementById("inputText").value;
+        document.getElementById("criterion1").classList.remove("initiallyHidden");
+    }
+    else if(document.getElementById("depCountry").checked){
+        if(document.getElementById("criterion1").classList.contains("initiallyHidden")){
+            document.getElementById("criterion2").classList.add("floatLeft");
+        }
+        document.getElementById("c2Text").innerHTML = document.getElementById("inputText").value;
+        document.getElementById("criterion2").classList.remove("initiallyHidden");
+    }
 }
