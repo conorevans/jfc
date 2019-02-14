@@ -103,20 +103,56 @@ function londonAirports(){
 }
 
 function searchCriteria() {
+
+    //get elements to re-use
+    var criterion1 = document.getElementById("criterion1");
+    var criterion2 = document.getElementById("criterion2");
+    var criterion3 = document.getElementById("criterion3");
+    var criterion4 = document.getElementById("criterion4");
+    var text = document.getElementById("inputText").value;
+
     document.getElementById("searchCriteria").classList.remove("initiallyHidden");
     if(document.getElementById("depAir").checked){
-        if(document.getElementById("criterion1").classList.contains("initiallyHidden") 
-        && !(document.getElementById("criterion2").classList.contains("initiallyHidden"))){
-            document.getElementById("criterion2").classList.remove("floatLeft");
+        //?remove floats
+        if(criterion4.classList.contains("floatLeft")){
+            criterion4.classList.remove("floatLeft");
         }
-        document.getElementById("c1Text").innerHTML = document.getElementById("inputText").value;
-        document.getElementById("criterion1").classList.remove("initiallyHidden");
+        else if(criterion3.classList.contains("floatLeft") ){
+           criterion3.classList.remove("floatLeft");
+        }
+        else if(criterion2.classList.contains("floatLeft")){
+            criterion2.classList.remove("floatLeft");
+        }
+        document.getElementById("c1Text").innerHTML = text;
+        criterion1.classList.add("floatLeft");
+        criterion1.classList.remove("initiallyHidden");
     }
     else if(document.getElementById("depCountry").checked){
-        if(document.getElementById("criterion1").classList.contains("initiallyHidden")){
-            document.getElementById("criterion2").classList.add("floatLeft");
+        //?set float
+        if(criterion1.classList.contains("initiallyHidden")){
+            criterion2.classList.add("floatLeft");
         }
         document.getElementById("c2Text").innerHTML = document.getElementById("inputText").value;
-        document.getElementById("criterion2").classList.remove("initiallyHidden");
+        criterion2.classList.remove("initiallyHidden");
+    }
+    else if(document.getElementById("destAir").checked){
+        //?set float
+        if(criterion1.classList.contains("initiallyHidden")
+        && criterion2.classList.contains("initiallyHidden")){
+            criterion3.classList.add("floatLeft");
+        }
+        document.getElementById("c3Text").innerHTML =text;
+        criterion3.classList.remove("initiallyHidden");
+    }
+    else if(document.getElementById("destCountry").checked){
+        //?set float
+        if(criterion1.classList.contains("initiallyHidden")
+        && criterion2.classList.contains("initiallyHidden")
+        && criterion3.classList.contains("initiallyHidden")){
+            criterion4.classList.add("floatLeft");
+        }
+        document.getElementById("c4Text").innerHTML = text;
+        criterion4.classList.remove("initiallyHidden");
     }
 }
+
