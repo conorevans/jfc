@@ -29,7 +29,7 @@
                 <label for="destCountry">Destination Country</label>
             </div>
             <br><input type="text" id="inputText" onfocus="this.value=''" required>
-            <button type="submit"onclick="updateTable();searchCriteria();">Submit</button>
+            <button type="submit" onclick="updateTable();searchCriteria();">Submit</button>
         </form>
         <!--form-->
         <section id="searchCriteria" class="initiallyHidden">
@@ -39,6 +39,14 @@
             </button>
             <button type="menu" id="criterion2" class="initiallyHidden">
                 <div id="c2Text" class="inline"></div>
+                <div class="xButton inline">&times;</div>
+            </button>
+            <button type="menu" id="criterion3" class="initiallyHidden">
+                <div id="c3Text" class="inline"></div>
+                <div class="xButton inline">&times;</div>
+            </button>
+            <button type="menu" id="criterion4" class="initiallyHidden">
+                <div id="c4Text" class="inline"></div>
                 <div class="xButton inline">&times;</div>
             </button>
         </section>
