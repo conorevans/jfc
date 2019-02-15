@@ -46,6 +46,7 @@ Papa.parse(file, {
                 cell.innerHTML = element1; 
             });     
         });
+        document.getElementById("cloneTable").innerHTML = tbl.innerHTML;
     },
     error: undefined,
     download: false,
@@ -111,6 +112,7 @@ function searchCriteria() {
     var criterion4 = document.getElementById("criterion4");
     var text = document.getElementById("inputText").value;
 
+    //unhide <div> of buttons showing previous search criteria
     document.getElementById("searchCriteria").classList.remove("initiallyHidden");
     if(document.getElementById("depAir").checked){
         //?remove floats
@@ -153,6 +155,32 @@ function searchCriteria() {
         }
         document.getElementById("c4Text").innerHTML = text;
         criterion4.classList.remove("initiallyHidden");
+    }
+}
+
+function reset() {
+    //reset table
+    document.getElementById("flightTable").innerHTML = document.getElementById("cloneTable").innerHTML;
+
+    //hide and reset searchCriteria buttons
+    if(!(document.getElementById("criterion1").classList.contains("initiallyHidden"))){
+        document.getElementById("criterion1").classList.add("initiallyHidden");
+        document.getElementById("c1Text").innerHTML = "";
+    }
+
+    if(!(document.getElementById("criterion2").classList.contains("initiallyHidden"))){
+        document.getElementById("criterion2").classList.add("initiallyHidden");
+        document.getElementById("c2Text").innerHTML = "";
+    }
+
+    if(!(document.getElementById("criterion3").classList.contains("initiallyHidden"))){
+        document.getElementById("criterion3").classList.add("initiallyHidden");
+        document.getElementById("c3Text").innerHTML = "";
+    }
+
+    if(!(document.getElementById("criterion4").classList.contains("initiallyHidden"))){
+        document.getElementById("criterion4").classList.add("initiallyHidden");
+        document.getElementById("c4Text").innerHTML = "";
     }
 }
 
