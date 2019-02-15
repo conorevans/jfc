@@ -9,7 +9,7 @@
     left: 40%;
 }
 
-#flightTable {
+#flightTable, #cloneTable {
     border-collapse: collapse;
 }
 td , th {
