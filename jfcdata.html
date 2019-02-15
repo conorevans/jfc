@@ -29,8 +29,11 @@
                 <label for="destCountry">Destination Country</label>
             </div>
             <br><input type="text" id="inputText" onfocus="this.value=''" required>
-            <button type="submit" onclick="updateTable();searchCriteria();">Submit</button>
         </form>
+        <div class="inline">
+            <button type="submit" onclick="updateTable();searchCriteria();">Submit</button>
+            <button type="submit" id="formButtons" class="inline" onclick="reset()">Reset</button>
+        </div>
         <!--form-->
         <section id="searchCriteria" class="initiallyHidden">
             <button type="menu" id="criterion1" class="initiallyHidden">
@@ -72,6 +75,7 @@
                     <th>Bag Included</th>
                 </tr>
             </table>
+            <table id="cloneTable" class="initiallyHidden"></table>
             <div id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</div>
         </section>
     </body>
