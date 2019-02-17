@@ -159,8 +159,11 @@ function searchCriteria() {
 }
 
 function reset() {
-    //reset table
+    //reset table and form
     document.getElementById("flightTable").innerHTML = document.getElementById("cloneTable").innerHTML;
+    //note: having the 'reset' button as a <button type="reset"..> within the form worked for clearing the form
+    //but it would then not proceed with its onclick events. resetting the form in javascript avoids this problem.
+    document.getElementById("airportForm").reset();
 
     //hide and reset searchCriteria buttons
     if(!(document.getElementById("criterion1").classList.contains("initiallyHidden"))){
