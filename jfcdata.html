@@ -8,75 +8,80 @@
     </head>
     <body>
         <script src="papaparse.js"></script>
-        <script src="Flight.js"></script>
+        <script src="jfcindex.js"></script>
         <!--scripts-->
-
-        <form id="airportForm" action="javascript:;" autocomplete="off">
-            <div>
-                <input type="radio" name="form" id="depAir" required>
-                <label for="depAir">Departure Airport</label>
-            </div>
-            <div>
-                <input type="radio" name="form" id="depCountry">
-                <label for="depCountry">Departure Country</label>
-            </div>
-            <div>
-                <input type="radio" name="form" id="destAir">
-                <label for="destAir">Destination Airport</label>
-            </div>
-            <div>
-                <input type="radio" name="form" id="destCountry">
-                <label for="destCountry">Destination Country</label>
-            </div>
-            <br><input type="text" id="inputText" onfocus="this.value=''" required>
-        </form>
-        <div class="inline">
-            <button type="submit" onclick="updateTable();searchCriteria();">Submit</button>
-            <button type="submit" id="formButtons" class="inline" onclick="reset()">Reset</button>
+        <div id="wrapper">
+            <form id="airportForm" action="javascript:;" autocomplete="off">
+                <div>
+                    <input type="radio" name="form" id="depAir" required>
+                    <label for="depAir">Departure Airport</label>
+                </div>
+                <div>
+                    <input type="radio" name="form" id="depCountry">
+                    <label for="depCountry">Departure Country</label>
+                </div>
+                <div>
+                    <input type="radio" name="form" id="destAir">
+                    <label for="destAir">Destination Airport</label>
+                </div>
+                <div>
+                    <input type="radio" name="form" id="destCountry">
+                    <label for="destCountry">Destination Country</label>
+                </div>
+                <br><input type="text" id="inputText" onfocus="this.value=''" required>
+            </form>
+            <!--form-->
+            <section>
+                <div>
+                    <button type="submit" onclick="updateTable();searchCriteria();">Submit</button>
+                    <button type="submit" onclick="reset()">Reset</button><br>
+                </div>
+                <section id="searchCriteria" class="initiallyHidden inline">
+                    <button type="menu" id="criterion1" class="initiallyHidden">
+                        <div id="c1Text" class="inline"></div>
+                        <div class= "xButton inline">&times;</div>
+                    </button>
+                    <button type="menu" id="criterion2" class="initiallyHidden">
+                        <div id="c2Text" class="inline"></div>
+                        <div class="xButton inline">&times;</div>
+                    </button>
+                    <button type="menu" id="criterion3" class="initiallyHidden">
+                        <div id="c3Text" class="inline"></div>
+                        <div class="xButton inline">&times;</div>
+                    </button>
+                    <button type="menu" id="criterion4" class="initiallyHidden">
+                        <div id="c4Text" class="inline"></div>
+                        <div class="xButton inline">&times;</div>
+                    </button>
+                </section>
+            </section>
+            
+            
+            <section id="mainTable">
+                <h1>JFC</h1> 
+                <table id="flightTable"> 
+                    <tr>
+                        <th>Date</th>
+                        <th>Departure Airport</th>
+                        <th><a href="#iata">IATA*</a></th>
+                        <th>Country</th>
+                        <th>Destination Airport</th>
+                        <th>IATA</th>
+                        <th>Country</th>
+                        <th>Airline</th>
+                        <th>Travel Dates</th>
+                        <th>Offer Duration</th>
+                        <th>Price</th>
+                        <th>Currency</th>
+                        <th>Typical Price</th>
+                        <th>Saving</th>
+                        <th>Saving%</th>
+                        <th>Bag Included</th>
+                    </tr>
+                </table>
+                <table id="cloneTable" class="initiallyHidden"></table>
+                <div id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</div>
+            </section>
         </div>
-        <!--form-->
-        <section id="searchCriteria" class="initiallyHidden">
-            <button type="menu" id="criterion1" class="initiallyHidden">
-                <div id="c1Text" class="inline"></div>
-                <div class= "xButton inline">&times;</div>
-            </button>
-            <button type="menu" id="criterion2" class="initiallyHidden">
-                <div id="c2Text" class="inline"></div>
-                <div class="xButton inline">&times;</div>
-            </button>
-            <button type="menu" id="criterion3" class="initiallyHidden">
-                <div id="c3Text" class="inline"></div>
-                <div class="xButton inline">&times;</div>
-            </button>
-            <button type="menu" id="criterion4" class="initiallyHidden">
-                <div id="c4Text" class="inline"></div>
-                <div class="xButton inline">&times;</div>
-            </button>
-        </section>
-        <section id="mainTable">
-            <h1>JFC</h1> 
-            <table id="flightTable"> 
-                <tr>
-                    <th>Date</th>
-                    <th>Departure Airport</th>
-                    <th>IATA*</th>
-                    <th>Country</th>
-                    <th>Destination Airport</th>
-                    <th>IATA</th>
-                    <th>Country</th>
-                    <th>Airline</th>
-                    <th>Travel Dates</th>
-                    <th>Offer Duration</th>
-                    <th>Price</th>
-                    <th>Currency</th>
-                    <th>Typical Price</th>
-                    <th>Saving</th>
-                    <th>Saving%</th>
-                    <th>Bag Included</th>
-                </tr>
-            </table>
-            <table id="cloneTable" class="initiallyHidden"></table>
-            <div id="iata">*IATA: International Airport Transport Association Code - unique to each airport.</div>
-        </section>
     </body>
 </html>
